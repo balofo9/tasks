@@ -1,97 +1,71 @@
+/* --- Reset Básico e Padrões do Body --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border não alterem a largura final */
+}
 
 body {
-            font-family: 'Poppins', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .slide {
-            min-height: 100vh;
-            scroll-snap-align: start;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 2rem;
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-        }
-        .slide-content {
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 2rem;
-            border-radius: 1rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .slide-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            filter: brightness(0.6);
-        }
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-        }
-        h2 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-        }
-        p, blockquote {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        blockquote {
-            border-left: 4px solid #FBBF24; /* amber-400 */
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.5rem;
-            padding: 1rem 1.5rem;
-        }
-        .nav-button {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            transition: background-color 0.3s ease;
-        }
-        .nav-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        #prevBtn {
-            left: 1rem;
-        }
-        #nextBtn {
-            right: 1rem;
-        }
-        #slide-container {
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-            height: 100vh;
-        }
-        /* Hide scrollbar for a cleaner look */
-        #slide-container::-webkit-scrollbar {
-            display: none;
-        }
-        #slide-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(46, 42, 42);
+    color: white;
+    font-family: sans-serif; /* Adiciona uma fonte padrão para melhor legibilidade */
+}
+
+h1 {
+    padding: 20px;
+    text-align: center; /* Centraliza o título */
+}
+
+/* --- Estilos da Lista de Tarefas --- */
+.listTasks {
+    /* Centraliza a lista na página */
+    width: 90%;
+    max-width: 700px; /* Limita a largura em telas grandes */
+    margin: 20px auto; 
+
+    /* Estilos da caixa */
+    border: 1px solid gray;
+    border-radius: 7px;
+    padding: 10px;
+    list-style: none; /* Remove os marcadores da lista */
+}
+
+.listTasks li {
+    border: 1px solid gray;
+    border-radius: 7px;
+    margin-bottom: 10px; /* Espaçamento entre os itens */
+    transition: background-color 0.3s; /* Efeito suave ao passar o mouse */
+}
+
+/* Efeito ao passar o mouse sobre o item da lista */
+.listTasks li:hover {
+    background-color: rgb(65, 61, 61);
+}
+
+/* Estilos do link dentro do item da lista */
+.listTasks li a {
+    display: block; /* Faz o link ocupar todo o espaço do 'li' */
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Remove a margem padrão dos parágrafos dentro do link */
+.listTasks li a p {
+    margin: 0;
+}
+
+/* Estiliza o nome da tarefa */
+.listTasks li a p:first-child {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+/* Estiliza o nome do professor */
+.listTasks li a p:last-child {
+    font-size: 0.9rem;
+    color: lightgray;
+}
