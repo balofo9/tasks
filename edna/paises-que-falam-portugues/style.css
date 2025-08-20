@@ -194,9 +194,68 @@ body, html {
 
 /* Imagens de fundo */
 .slide[data-country="angola"] {
-    background-image: url('https://images.unsplash.com/photo-1605352345249-2e037c874358?q=80&w=1932&auto=format&fit=crop');
+    background-image: url(https://oneworldmediacorp.com/wp-content/uploads/2025/08/Angola-1920x1080-1-1536x864.jpeg);
 }
 
 .slide[data-country="guine-bissau"] {
-    background-image: url('https://images.unsplash.com/photo-1627896152345-817887531f82?q=80&w=2070&auto=format&fit=crop');
+    background-image: url(https://maironpelomundo.com/wp-content/uploads/2023/08/Bissau-1-22.jpeg);
+}
+
+/* --- ESTILOS PARA A GALERIA DE IMAGENS --- */
+
+/* INSIGHT DE APRENDIZADO:
+  Garantir que o painel de conteúdo tenha uma barra de rolagem quando
+  o conteúdo (texto + imagens) for maior que a tela é crucial para a usabilidade.
+  Verifique se a sua regra para a classe '.content' já possui estas duas propriedades.
+  Se não, adicione-as.
+*/
+.content {
+    max-height: 90vh; /* Define uma altura máxima */
+    overflow-y: auto; /* Adiciona a barra de rolagem vertical quando necessário */
+}
+
+
+/* Contêiner da galeria */
+.image-gallery {
+    margin-top: 2rem; /* Espaço entre as informações e a galeria */
+    padding-top: 1.5rem; /* Espaço interno acima */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Linha divisória sutil */
+    
+    /* INSIGHT DE APRENDIZADO:
+      CSS Grid é a ferramenta moderna ideal para criar layouts de galeria.
+      'repeat(auto-fit, minmax(150px, 1fr))' é uma técnica poderosa que cria um grid
+      totalmente responsivo: ele gera o máximo de colunas que couberem na tela,
+      sendo que cada uma terá no mínimo 150px e se esticará para preencher o espaço.
+    */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem; /* Espaçamento entre as imagens */
+}
+
+/* Estilo para cada item da galeria */
+.gallery-item {
+    /* INSIGHT DE APRENDIZADO:
+      Usar 'aspect-ratio' garante que todos os itens da galeria tenham a mesma proporção
+      (neste caso, 1/1 = um quadrado perfeito), criando um visual limpo e organizado,
+      mesmo que as imagens originais tenham tamanhos diferentes.
+    */
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    
+    /* INSIGHT DE APRENDIZADO:
+      Aplicar a imagem como 'background' em uma div, em vez de usar a tag <img>,
+      nos dá total controle sobre o enquadramento. 'background-size: cover' garante
+      que a imagem sempre preencha o espaço sem distorcer.
+    */
+    background-size: cover;
+    background-position: center;
+    
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efeito de hover para interatividade */
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
