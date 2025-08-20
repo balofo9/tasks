@@ -1,0 +1,202 @@
+/* --- MELHORIAS GERAIS E TIPOGRAFIA --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    /* A fonte 'Poppins' é moderna e excelente para leitura em tela. */
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #0c0c0c; /* Um preto um pouco mais suave */
+    color: #f5f5f5; /* Um branco levemente acinzentado */
+    overflow: hidden;
+}
+
+/* --- ANIMAÇÕES E TRANSIÇÕES DO SLIDER --- */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 1;
+    transform: scale(1.05); /* Começa com um leve zoom */
+    /* A transição do zoom (transform) é muito mais longa para criar um movimento sutil */
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 8s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+    transform: scale(1); /* No slide ativo, o zoom diminui lentamente */
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradiente sutil para escurecer mais as bordas e focar no centro */
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 3;
+}
+
+/* Imagens de fundo (mantidas as mesmas, pois são de alta qualidade) */
+.slide[data-country="angola"] {
+    background-image: url('https://images.unsplash.com/photo-1605352345249-2e037c874358?q=80&w=1932&auto=format&fit=crop');
+}
+
+.slide[data-country="guine-bissau"] {
+    background-image: url('https://images.unsplash.com/photo-1627896152345-817887531f82?q=80&w=2070&auto=format&fit=crop');
+}
+
+/* --- EFEITO DE VIDRO (GLASSMORPHISM) APRIMORADO --- */
+.content {
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    max-width: 1200px;
+    width: 90%;
+    padding: 2.5rem 3rem;
+    background-color: rgba(12, 12, 12, 0.6); /* Fundo mais escuro e sutil */
+    border-radius: 15px;
+    backdrop-filter: blur(8px); /* Desfoque mais intenso */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil que realça o efeito */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Sombra para dar profundidade */
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* --- ESTILIZAÇÃO DO CONTEÚDO E ANIMAÇÕES --- */
+.content h1 {
+    /* 'Oswald' é uma fonte de impacto, ótima para títulos grandes */
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Tamanho de fonte responsivo */
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.info-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    text-align: left;
+}
+
+.info-columns h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: #f0a500;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0a500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-columns p {
+    line-height: 1.7;
+    font-weight: 300; /* Fonte mais leve para o texto */
+}
+
+/* Animações para a entrada do conteúdo */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Aplicando as animações apenas quando o slide está ativo */
+.slide.active .content h1 {
+    animation: fadeInDown 0.8s ease-out 0.3s backwards;
+}
+
+.slide.active .info-columns {
+    animation: fadeInUp 0.8s ease-out 0.6s backwards;
+}
+
+
+/* --- BOTÕES DE NAVEGAÇÃO MODERNIZADOS --- */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.5rem; /* Tamanho do ícone */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%; /* Botões circulares */
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-button:hover {
+    background-color: #f0a500;
+    color: #0c0c0c;
+    transform: translateY(-50%) scale(1.1); /* Efeito de escala no hover */
+    border-color: #f0a500;
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+
+/* --- SCROLLBAR CUSTOMIZADA --- */
+.content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: #f0a500;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background-color: #ffc107;
+}
+
+/* Imagens de fundo */
+.slide[data-country="angola"] {
+    background-image: url('https://images.unsplash.com/photo-1605352345249-2e037c874358?q=80&w=1932&auto=format&fit=crop');
+}
+
+.slide[data-country="guine-bissau"] {
+    background-image: url('https://images.unsplash.com/photo-1627896152345-817887531f82?q=80&w=2070&auto=format&fit=crop');
+}
